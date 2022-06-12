@@ -3,18 +3,14 @@ import Image from 'next/image'
 import Header2 from "../components/header2"
 import JobPost from '../components/jobpost'
 import { useState, useEffect } from 'react'
-import { connectToDatabase } from '../middleware/database'
 
 
-
-const dev_url = process.env.DEV_URL
 
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Home({posts}) {
-  const { db } = await connectToDatabase();
-  console.log(db)
+  
   console.log(posts)
   const [jobs, setJobs] = useState([])
 
@@ -60,7 +56,8 @@ export async function getStaticProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library  
   //const res = await fetch(`https://newpolitikjobs.vercel.app/api/hello`)
-  const res = await fetch('https://newpolitikjobs-marceljanes.vercel.app/api/hello')  
+  const res = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/hello`
+  // const res = await fetch('http://localhost:3000/api/hello')  
   const posts = await res.json()
  
   

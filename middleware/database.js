@@ -1,6 +1,8 @@
 import { MongoClient } from 'mongodb'
 
-const { MONGODB_URI, MONGODB_DB } = process.env
+// const { MONGODB_URI, MONGODB_DB } = process.env
+const MONGODB_URI  = 'mongodb+srv://marceljanes:mjanes@cluster0.puwsa.mongodb.net/?retryWrites=true&w=majority'
+const MONGODB_DB = 'jobs'
 
 if (!MONGODB_URI) {
   throw new Error(
