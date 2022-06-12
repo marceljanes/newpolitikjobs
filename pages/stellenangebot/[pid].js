@@ -1,25 +1,23 @@
 import React from 'react'
 import {useEffect} from 'react'
 import { useRouter } from 'next/router'
+import useSWR from 'swr'
 
 
-function Job({data}) {
-  console.log('thats the job')
+const fetcher = (url) => fetch(url).then((res) => res.json())
+
+
+function Job(context) {
+
+  const router = useRouter()  
+
+  const id = router.query.pid.split('uniqueID')[1]
+  const { data, error } = useSWR(`/api/job/${id}`, fetcher)  
+  
   console.log(data)
-  const router = useRouter()
-  useEffect(() => {  
-    
-    //console.log(router.query.pid.split('uniqueID')[1])  
-    //console.log(data)
-
-  }, [])
-  
-  
-
-
   return (
     <div>Job
-      <p>{data.title}</p>
+      <p>{data && data.title}</p>
     </div>
   )
 }
@@ -27,16 +25,3 @@ function Job({data}) {
 export default Job
 
 
-export async function getServerSideProps(context) {
-  
-  // Fetch data from external API  
-  const id = context.query.pid.split('uniqueID')[1]
-  if(!process.env.NEXT_PUBLIC_FRONTEND_URL) {
-    const res = await fetch(`/api/job/${id}`)
-    const data = await res.json()
-    // Pass data to the page via props
-    return { props: { data } }
-
-  }
-  
-}
