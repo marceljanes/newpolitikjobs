@@ -10,13 +10,14 @@ const fetcher = (url) => fetch(url).then((res) => res.json())
 function Job() {
 
   const router = useRouter()
+  let id = ''
   if(router.query.pid) {
-    const id = router.query.pid.split('uniqueID')[1]
-    const { data, error } = useSWR(`/api/job/${id}`, fetcher)
+    id = router.query.pid.split('uniqueID')[1]
+    
   }
    
-  
-  console.log(data)
+  const { data, error } = useSWR(`/api/job/${id}`, fetcher)
+    
   return (
     <div>Job
       <p>{data && data.title}</p>
