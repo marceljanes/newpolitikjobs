@@ -1,5 +1,13 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { connectToDatabase } from "../../middleware/database";
 
-export default function handler(req, res) {
-  res.status(200).json({ name: 'John Doe' })
-}
+export default async (req, res) => {
+  const { db } = await connectToDatabase();
+
+  const jobs = await db
+    .collection("jobs")
+    .find({})    
+    .limit(5)
+    .toArray();
+
+  res.json(jobs);
+};
