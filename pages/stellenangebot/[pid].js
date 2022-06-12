@@ -32,7 +32,7 @@ export async function getServerSideProps(context) {
   // Fetch data from external API  
   const id = context.query.pid.split('uniqueID')[1]
   if(!process.env.NEXT_PUBLIC_FRONTEND_URL) {
-    const res = await fetch(`${process.env.DEV_URL}/api/job/${id}`)
+    const res = await fetch(`/api/job/${id}`)
     const data = await res.json()
     // Pass data to the page via props
     return { props: { data } }
