@@ -60,7 +60,7 @@ export async function getStaticProps() {
   //const posts = await res.json()
 
   
-  
+  const posts = []
 
   // By returning { props: { posts } }, the Blog component
   // will receive `posts` as a prop at build time
