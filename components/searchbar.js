@@ -72,7 +72,7 @@ export default function SearchBar({jobs, setJobs}) {
                  
             </div>
             <div className="bg-slate-500 w-full md:w-1/3 h-12 rounded">
-                <button id="myBtn" onClick={(e) => {startSearch(e)}} class="bg-blue-400 outline-none hover:bg-blue-700 text-white font-bold py-2 px-4 rounded h-full w-full">
+                <button id="myBtn" onClick={(e) => {startSearch(e)}} className="bg-blue-400 outline-none hover:bg-blue-700 text-white font-bold py-2 px-4 rounded h-full w-full">
                     Suche
                 </button>
             </div>

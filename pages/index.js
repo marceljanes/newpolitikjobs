@@ -33,7 +33,7 @@ export default function Home({posts}) {
       <Header2 jobs={jobs} setJobs={setJobs}/>
       
        {jobs && <div className="z-10 md:w-1/2">{jobs.map(job => 
-        < JobPost job={job}/>)}
+        < JobPost key={job.title} job={job}/>)}
       </div> }
 
 
