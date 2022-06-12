@@ -11,7 +11,7 @@ const dev_url = process.env.DEV_URL
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function Home() {
+export default function Home({posts}) {
   console.log(posts)
   const [jobs, setJobs] = useState([])
 
@@ -53,3 +53,20 @@ export default function Home() {
   )
 }
 
+export async function getStaticProps() {
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library  
+  //const res = await fetch(`https://newpolitikjobs.vercel.app/api/hello`)
+  const res = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/hello`)  
+  const posts = await res.json()
+ 
+  
+
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: {
+      posts,
+    },
+  }
+}
