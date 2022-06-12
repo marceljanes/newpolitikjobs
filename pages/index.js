@@ -57,7 +57,7 @@ export async function getStaticProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library  
   //const res = await fetch(`https://newpolitikjobs.vercel.app/api/hello`)
-  const res = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/hello`)  
+  const res = await fetch(`https://newpolitikjobs.vercel.app/api/hello`)  
   const posts = await res.json()
  
   
