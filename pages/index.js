@@ -3,21 +3,21 @@ import Image from 'next/image'
 import Header2 from "../components/header2"
 import JobPost from '../components/jobpost'
 import { useState, useEffect } from 'react'
+import useSWR from 'swr'
 
 
-
+const fetcher = (url) => fetch(url).then((res) => res.json())
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function Home({posts}) {
+export default function Home() {  
   
-  console.log(posts)
-  const [jobs, setJobs] = useState([])
+  const [jobs, setJobs] = useState('')
 
-  useEffect(() => {
-    setJobs(posts)
+  const { data, error } = useSWR('/api/hello', fetcher)
+  
 
-  }, [])
+  
 
   
   return (
@@ -31,7 +31,7 @@ export default function Home({posts}) {
      
       <Header2 jobs={jobs} setJobs={setJobs}/>
       
-       {jobs && <div className="z-10 md:w-1/2">{jobs.map(job => 
+       {data && <div className="z-10 md:w-1/2">{data.map(job => 
         < JobPost key={job.title} job={job}/>)}
       </div> }
 
@@ -52,21 +52,3 @@ export default function Home({posts}) {
   )
 }
 
-export async function getStaticProps() {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library  
-  //const res = await fetch(`https://newpolitikjobs.vercel.app/api/hello`)
-  const res = await fetch(`https://newpolitikjobs.vercel.app/api/hello`)
-  // const res = await fetch('http://localhost:3000/api/hello')  
-  const posts = await res.json()
- 
-  
-
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
-  return {
-    props: {
-      posts,
-    },
-  }
-}
