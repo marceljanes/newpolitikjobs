@@ -56,8 +56,8 @@ export default function Home({posts}) {
 export async function getStaticProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library  
-  const res = await fetch(`https://newpolitikjobs-7u4h5ypny-marceljanes.vercel.app/api/hello`)
-  const posts = await res.json()
+  //const res = await fetch(`https://newpolitikjobs-7u4h5ypny-marceljanes.vercel.app/api/hello`)
+  //const posts = await res.json()
 
   
   
