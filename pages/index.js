@@ -55,17 +55,11 @@ export default function Home({posts}) {
 
 export async function getStaticProps() {
   // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  let posts 
-  if(!process.env.NEXT_PUBLIC_FRONTEND_URL) {
-    const res = await fetch(`${dev_url}/api/hello`)
-    posts = await res.json()
+  // You can use any data fetching library  
+  const res = await fetch(`https://newpolitikjobs-7u4h5ypny-marceljanes.vercel.app/api/hello`)
+  const posts = await res.json()
 
-  } else {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/hello`)
-    posts = await res.json()
-    
-  }
+  
   
 
   // By returning { props: { posts } }, the Blog component
