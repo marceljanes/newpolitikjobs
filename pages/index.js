@@ -3,18 +3,28 @@ import Image from 'next/image'
 import Header2 from "../components/header2"
 import JobPost from '../components/jobpost'
 import { useState, useEffect } from 'react'
+import { useRef } from 'react'
 import useSWR from 'swr'
+import app from '../config/firebase'
+
+
 
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function Home() {  
+export default function Home() { 
+  console.log(app)
+  
+   
+  const snake = useRef()
+  
   
   const [jobs, setJobs] = useState('')
 
   const { data, error } = useSWR('/api/hello', fetcher)
+
   
 
   
@@ -33,8 +43,9 @@ export default function Home() {
       
        {data && <div className="z-10 md:w-1/2">{data.map(job => 
         < JobPost key={job.title} job={job}/>)}
+        
       </div> }
-
+      
 
 
 
