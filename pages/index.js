@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import { useRef } from 'react'
 import useSWR from 'swr'
 import app from '../config/firebase'
+import Navbar from '../components/navbar'
 
 
 
@@ -38,7 +39,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-     
+      <Navbar />
       <Header2 jobs={jobs} setJobs={setJobs}/>
       
        {data && <div className="z-10 md:w-1/2">{data.map(job => 
