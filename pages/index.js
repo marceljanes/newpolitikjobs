@@ -16,7 +16,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json())
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Home() { 
-  console.log(app)
+  
   
    
   const snake = useRef()
@@ -42,10 +42,17 @@ export default function Home() {
       <Navbar />
       <Header2 jobs={jobs} setJobs={setJobs}/>
       
-       {data && <div className="z-10 md:w-1/2">{data.map(job => 
+       {        
+       (data && jobs == '') ?
+       ( data && <div className="z-10 md:w-1/2">{data.map(job => 
         < JobPost key={job.title} job={job}/>)}
         
-      </div> }
+      </div> ) : ( jobs && <div className="z-10 md:w-1/2">{jobs.map(job => 
+        < JobPost key={job.title} job={job}/>)}
+        
+      </div> )
+            
+      }
       
 
 

@@ -1,5 +1,7 @@
 import Autocomplete from "react-google-autocomplete";
 import { useState, useEffect } from "react";
+import Image from "next/image";
+
 
 export default function SearchBar({jobs, setJobs}) {   
     const [keywords_holder, setKeywords_Holder] = useState('')
@@ -33,6 +35,7 @@ export default function SearchBar({jobs, setJobs}) {
         const jobs_from_api = await res.json()
         // Es kommt ein Objekt zurück und die Jobs sind im Schlüssel "jobs"
         const jobs_from_api_array = jobs_from_api.jobs 
+        console.log(jobs_from_api_array)
         setJobs(jobs_from_api_array)
         
     }
