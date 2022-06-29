@@ -5,7 +5,7 @@ export default async (req, res) => {
 
   const jobs = await db
     .collection("jobs")
-    .find({})    
+    .find({'stadt': 'Berlin'})    
     .limit(5)
     .toArray();
 

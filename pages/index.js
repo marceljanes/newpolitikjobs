@@ -24,7 +24,7 @@ export default function Home() {
   
   const [jobs, setJobs] = useState('')
 
-  const { data, error } = useSWR('/api/hello', fetcher)
+  const { data, error } = useSWR('/api/startPageJobs', fetcher)
 
   
 
