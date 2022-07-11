@@ -3,11 +3,8 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 
-export default function SearchBar({jobs, setJobs}) {   
-    const [keywords_holder, setKeywords_Holder] = useState('')
-    const [ort, setOrt] = useState('')
-    const [lat, setLat] = useState('')
-    const [long, setLong] = useState('')
+export default function SearchBar({jobs, setJobs, page, setPage, ort, setOrt, long, setLong, lat, setLat, keywords_holder, setKeywords_Holder, loadMore}) {   
+    
 
 
     useEffect(() => {
@@ -35,12 +32,9 @@ export default function SearchBar({jobs, setJobs}) {
         console.log('keyword')
         console.log(keywords_holder)
         console.log('long')
-        console.log(long)                
-        if(long == '') {
-            res = await fetch(`/api/jobs/all?keyword=${keywords_holder}`) }
-        else {
-            res = await fetch(`/api/jobs/all?keyword=${keywords_holder}&long=${long}&lat=${lat}`) 
-        }
+        console.log(long)              
+        res = await fetch(`/api/jobs/all?keyword=${keywords_holder}&long=${long}&lat=${lat}&page=${page}`) 
+        
 
        
 
@@ -48,7 +42,11 @@ export default function SearchBar({jobs, setJobs}) {
         const jobs_from_api = await res.json()
         // Es kommt ein Objekt zurück und die Jobs sind im Schlüssel "jobs"
         const jobs_from_api_array = jobs_from_api.jobs         
-        setJobs(jobs_from_api_array)
+        if(!loadMore) {
+            setJobs(jobs_from_api_array)
+        }else {
+            setJobs(prevState => ([...prevState, ...jobs_from_api_array]))
+        }
         
     }
 
@@ -57,6 +55,14 @@ export default function SearchBar({jobs, setJobs}) {
 
     const startSearch = (e) => {
         e.preventDefault()            
+        startSearchBackend()
+    }
+    const startSearchLoadMoreButton = (e) => {
+        e.preventDefault()
+        console.log('-------search load more button')
+        console.log(keywords_holder)
+        console.log(page)
+        setPage(page+1)            
         startSearchBackend()
     }
 
@@ -92,11 +98,14 @@ export default function SearchBar({jobs, setJobs}) {
                     />               
                     
                 </div>
-                <div className="bg-slate-500 w-full md:w-1/3 h-12 rounded">
+                {!loadMore ? <div className="bg-slate-500 w-full md:w-1/3 h-12 rounded">
                     <button id="myBtn" onClick={(e) => {startSearch(e)}} className="outline-none hover:bg-yellow-300 text-white font-bold py-2 px-4 rounded h-full w-full">
                         Suche
                     </button>
-                </div>
+                </div> :
+                    <button id="myBtn" onClick={(e) => {startSearchLoadMoreButton(e)}} className="outline-none hover:bg-yellow-300 text-white font-bold py-2 px-4 rounded h-full w-full">
+                    Mehr laden
+                   </button> }
                 
                         
                                     

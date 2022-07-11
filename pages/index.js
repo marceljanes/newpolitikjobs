@@ -7,7 +7,9 @@ import { useRef } from 'react'
 import useSWR from 'swr'
 import app from '../config/firebase'
 import Navbar from '../components/navbar'
+import LoadMoreButton from '../components/load_more_button'
 import mo1 from '../public/mo1.jpg'
+
 
 
 
@@ -19,11 +21,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export default function Home() { 
   
   
-   
+  console.log(app)
   const snake = useRef()
-  
-  
+  const [keywords_holder, setKeywords_Holder] = useState('')
+  const [ort, setOrt] = useState('')
+  const [lat, setLat] = useState('')
+  const [long, setLong] = useState('')  
   const [jobs, setJobs] = useState('')
+  const [page, setPage] = useState(0)
 
   const { data, error } = useSWR('/api/startPageJobs', fetcher)
 
@@ -44,7 +49,7 @@ export default function Home() {
       
       
       
-      <Header2 jobs={jobs} setJobs={setJobs}/>
+      <Header2 jobs={jobs} setJobs={setJobs} page={page} setPage={setPage} ort={ort} setOrt={setOrt} lat={lat} setLat={setLat} long={long} setLong={setLong} keywords_holder={keywords_holder} setKeywords_Holder={setKeywords_Holder}/>
       
        {        
        (data && jobs == '') ?
@@ -59,7 +64,7 @@ export default function Home() {
       }
       
 
-
+        <LoadMoreButton loadMore={true} jobs={jobs} setJobs={setJobs} page={page} setPage={setPage} ort={ort} setOrt={setOrt} lat={lat} setLat={setLat} long={long} setLong={setLong} keywords_holder={keywords_holder} setKeywords_Holder={setKeywords_Holder}/>
 
         <form className="m-4 flex">
           <input className="rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white" placeholder="your@mail.com"/>
