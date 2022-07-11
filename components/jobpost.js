@@ -18,7 +18,7 @@ export default function JobPost({job}) {
                     <div className="text-xl font-semibold">R</div>
                     
                 </div>
-                <div className="rounded-full animate-pulse bg-fuchsia-300 w-3 h-3" />                                
+                <div className="rounded-full animate-pulse bg-green-300 w-3 h-3" />                                
             </div>
             
             
