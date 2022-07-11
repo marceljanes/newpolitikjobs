@@ -4,12 +4,13 @@
 
 
 .background {
-    background-color: #f5f5f5;    
+    background-color: #fafafa;    
     opacity: 1;
     width: 100vW;
     height: 100%;
     background-size: 96px 96px;
-    background-image: linear-gradient(#f8f8f8 1px, transparent 1px), linear-gradient(to right, #faf8f8 1px, #f3f3f3 1px);
+    /* background-image: linear-gradient(#e3e3e3 1px, transparent 1px), linear-gradient(to right, #e4e4e4 1px, #f0f0f0 1px); */
+    background: rgb(59, 59, 63);
     
 }
 
@@ -19,6 +20,30 @@ html {
     
 }
 
-h2 {
-   @apply text-lg
+
+
+
+
+.article {
+    
+}
+
+.article p {    
+    @apply mt-7
+}
+
+.article li {
+    list-style-type: circle;
+}
+
+.article strong {
+    @apply mb-5
+}
+
+.article h1 {
+    @apply text-cyan-400;
+}
+
+.article h2 {
+    @apply text-base
 }

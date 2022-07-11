@@ -4,7 +4,7 @@ import logo1 from '../public/logo1.png'
 
 export default function Navbar() {
   return (
-    <div className="w-full h-24 bg-slate-500 font-bold text-slate-200 pl-5 pr-5 flex flex-column justify-center">
+    <div className="w-full h-24 bg-neutral-800 font-bold text-slate-200 pl-5 pr-5 flex flex-column justify-center">
         
         <div className="flex justify-between items-center relative">
             <div>
@@ -13,7 +13,9 @@ export default function Navbar() {
             </div>     
             
             <div className="hidden md:block">
-                Mid
+                <div className="text-slate-600">
+                    <span className="bg-green-100 p-1">#Wir</span><span className="bg-yellow-100 p-1">machen</span><span className="bg-red-100 p-1">Politik</span>
+                </div>
             </div>
             <div className="hidden md:block">
                 <div className="flex-row flex">

@@ -4,9 +4,11 @@ import Link from 'next/link'
 export default function JobPost({job}) {
     console.log(job)
     return (
-        <div key={job.title} className="sm: m-2 p-5 bg-gray-50 text-slate-500 rounded-lg mb-2 relative border-gray-300 border-1 flex w-full justify-between hover:bg-gray-100">
-            <div>                
-                <Link href={`/stellenangebot/${job.title.replace(/\s/g, "-").replace(/\//g, '-').replace(/' '/g, '--').replace(/„/g, "-").replace(/“/g, "-").replace(/\(/g , "-").replace(/\)/g, '-').replace(/_/g, '-').replace(/\"/g,'-')}uniqueID${job._id}`}><p className="font-medium cursor-pointer text-blue-700">{job.title}</p></Link>
+        <div key={job.title} className="sm: m-2 mt-3 p-5 text-slate-600 mb-2 relative border-neutral-600 border-1 rounded-xl flex w-full justify-between hover:border-l-yellow-200">
+            <div className="">
+                <div className="underline decoration-white decoration-1 decoration-dotted underline-offset-4">         
+                    <Link href={`/stellenangebot/${job.title.replace(/\s/g, "-").replace(/\//g, '-').replace(/' '/g, '--').replace(/„/g, "-").replace(/“/g, "-").replace(/\(/g , "-").replace(/\)/g, '-').replace(/_/g, '-').replace(/\"/g,'-')}uniqueID${job._id}`}><p className="font-medium cursor-pointer text-gray-200"><span className="">{job.title}</span></p></Link>
+                </div>
                 <p className="font-medium text-gray-400 text-sm">{job.organisation}</p>
                 <p className="font-medium text-gray-400 text-sm">in {job.stadt}</p>
                 

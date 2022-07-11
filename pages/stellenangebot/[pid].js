@@ -4,6 +4,8 @@ import { useRouter } from 'next/router'
 import useSWR from 'swr'
 import Head from 'next/head'
 import { Markup } from 'interweave';
+import JobPost from '../../components/jobpost'
+
 
 
 
@@ -22,6 +24,7 @@ function Job() {
   }
    
   const { data, error } = useSWR(`/api/job/${id}`, fetcher)
+  const { data: data2, error: error2 } = useSWR(`/api/under_single_job`, fetcher)
   
   
   useEffect(() => {
@@ -72,10 +75,10 @@ function Job() {
       </Head>     
         { data &&
            
-          <div className="flex flex-row p-5">
+          <div className="flex flex-row mt-5">
             <div className="basis-0 md:basis-1/3"></div>            
             <div className="basis-full md:basis-1/3">
-              <div className="flex flex-col bg-gray-50 text-slate-500 rounded-lg mb-2 relative border-gray-300 border-1 p-5">
+              <div className="flex flex-col bg-neutral-100 text-slate-600 rounded-lg relative border-gray-300 border-1 p-11 article">
                 <p>{data.title}</p>
                 <Markup content={data.article} />                
               </div>             
@@ -85,7 +88,13 @@ function Job() {
           
           </div>
         }
-      
+         {        
+          data2 && 
+          <div className="md:w-1/2 mr-5">{data2.map(job => 
+            < JobPost key={job.title} job={job}/>)}
+            
+          </div>
+        }
 
       
       
